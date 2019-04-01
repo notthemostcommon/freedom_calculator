@@ -1,0 +1,27 @@
+package com.notthemostcommon.creditcardpayoff.model;
+
+
+import lombok.*;
+
+import javax.persistence.*;
+
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Entity
+@Table(name = "creditor_info")
+public class Creditor {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    @NonNull
+    private String creditorName;
+    private float rate;
+    private float balance;
+    private float limit;
+    private float minPayment;
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    private  User user;
+
+}
