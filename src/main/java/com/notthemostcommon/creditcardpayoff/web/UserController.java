@@ -3,40 +3,64 @@ package com.notthemostcommon.creditcardpayoff.web;
 import com.notthemostcommon.creditcardpayoff.UserNotFoundException;
 import com.notthemostcommon.creditcardpayoff.model.User;
 import com.notthemostcommon.creditcardpayoff.model.UserRepository;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.Resources;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
 
     private final UserRepository repository;
 
-    UserController(UserRepository repository){
+    private final UserResourceAssembler assembler;
+
+    UserController(UserRepository repository, UserResourceAssembler assembler){
         this.repository = repository;
+        this.assembler = assembler;
     }
 
     @GetMapping("/users")
-    List<User> all(){
-        return repository.findAll();
+    Resources<Resource<User>> all(){
+
+        List<Resource<User>> users = repository.findAll().stream()
+                .map(assembler::toResource)
+                .collect(Collectors.toList());
+        return new Resources<>(users,
+                linkTo(methodOn(UserController.class).all()).withSelfRel());
     }
 
     @PostMapping("/users")
-    User newUser(@RequestBody User newUser) {
-        return repository.save(newUser);
+    ResponseEntity<?> newUser(@RequestBody User newUser) throws URISyntaxException {
+
+        Resource<User> resource = assembler.toResource(repository.save(newUser));
+
+        return ResponseEntity
+                .created(new URI(resource.getId().expand().getHref()))
+                .body(resource);
     }
 
     @GetMapping("/users/{id}")
-    User one(@PathVariable Long id) {
+    Resource<User> one(@PathVariable Long id) {
 
-        return repository.findById(id)
+        User user = repository.findById(id)
                 .orElseThrow(()-> new UserNotFoundException(id));
+
+        return assembler.toResource(user);
     }
 
-
     @PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User newUser, @PathVariable Long id){
-        return repository.findById(id)
+    ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id) throws URISyntaxException {
+
+        User updatedUser = repository.findById(id)
                 .map(user -> {
                     System.out.println(user);
                     user.setFirstName(newUser.getFirstName());
@@ -47,10 +71,18 @@ public class UserController {
                     newUser.setId(id);
                     return repository.save(newUser);
                 });
+        Resource<User> resource = assembler.toResource(updatedUser);
+
+        return ResponseEntity
+                .created(new URI(resource.getId().expand().getHref()))
+                .body(resource);
+
     }
 
     @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id) {
+    ResponseEntity<?> deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
