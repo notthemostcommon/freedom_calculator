@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import FormUser from './components/FormUser.js';
+import { 
+  Route, 
+  withRouter, 
+  Switch
+} from 'react-router-dom'; 
+import Register from './components/Register';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <FormUser/>
+        <Register/>
       </div>
     );
   }

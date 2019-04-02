@@ -10,8 +10,9 @@ import {
     Input, 
     Button
 } from 'reactstrap'; 
+import { register } from '../util/APIUtils';
 
-class FormUser extends Component {
+class Register extends Component {
 
     
     constructor(props) {
@@ -27,7 +28,9 @@ class FormUser extends Component {
     
     emptyItem = {
         firstName: '', 
-        lastName: ''
+        lastName: '', 
+        username: '', 
+        password: ''
     }
 
     handleChange = (e) => {
@@ -44,14 +47,25 @@ class FormUser extends Component {
         e.preventDefault(); 
         const {item} = this.state; 
         console.log(item)
+        // await register(item)
+        // .then(res => {
+        //     console.log("success " , res); 
+        // }).catch(err => {
+        //     console.log("error ", err); 
+        // }); 
 
-        await fetch('/users', {
+        await fetch('/users/register', {
             method: 'post', 
             headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
+                'Accept':'application/json', 
+                'Content-Type':'application/json'
             }, 
             body: JSON.stringify(item),
+        }) 
+        .then(res => {
+            console.log("success " , res); 
+        }).catch(err => {
+            console.log("error ", err); 
         }); 
 
     }
@@ -73,6 +87,16 @@ class FormUser extends Component {
                         onChange={this.handleChange} autoComplete="lastName" />
                 </FormGroup>
                 <FormGroup>
+                    <Label for="username">Emal Address</Label>
+                        <Input type="text" name="username" id="username" value={item.username || ''}
+                        onChange={this.handleChange} autoComplete="username" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="password">Password</Label>
+                        <Input type="text" name="password" id="password" value={item.password || ''}
+                        onChange={this.handleChange} autoComplete="off" />
+                </FormGroup>
+                <FormGroup>
                     <Button color="primary" type="submit">Save</Button>{' '}
                     <Button color="secondary">Cancel</Button>
                 </FormGroup>
@@ -81,4 +105,4 @@ class FormUser extends Component {
         )}
 }
 
-export default FormUser; 
+export default Register; 
