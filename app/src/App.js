@@ -5,14 +5,13 @@ import {
   withRouter, 
   Switch
 } from 'react-router-dom'; 
-import Register from './components/Register';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Register/>
+        <h1> Hello to my app! </h1>
       </div>
     );
   }

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import {
-    InputGroup, 
-    InputGroupAddon, 
-    InputGroupText, 
     Form, 
     FormGroup, 
     Label, 
@@ -10,7 +7,7 @@ import {
     Input, 
     Button
 } from 'reactstrap'; 
-import { register } from '../util/APIUtils';
+import { withRouter } from 'react-router-dom'; 
 
 class Register extends Component {
 
@@ -47,12 +44,6 @@ class Register extends Component {
         e.preventDefault(); 
         const {item} = this.state; 
         console.log(item)
-        // await register(item)
-        // .then(res => {
-        //     console.log("success " , res); 
-        // }).catch(err => {
-        //     console.log("error ", err); 
-        // }); 
 
         await fetch('/users/register', {
             method: 'post', 
@@ -64,6 +55,7 @@ class Register extends Component {
         }) 
         .then(res => {
             console.log("success " , res); 
+            this.props.history.push("/login"); 
         }).catch(err => {
             console.log("error ", err); 
         }); 
@@ -87,7 +79,7 @@ class Register extends Component {
                         onChange={this.handleChange} autoComplete="lastName" />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="username">Emal Address</Label>
+                    <Label for="username">Email Address</Label>
                         <Input type="text" name="username" id="username" value={item.username || ''}
                         onChange={this.handleChange} autoComplete="username" />
                 </FormGroup>
@@ -105,4 +97,4 @@ class Register extends Component {
         )}
 }
 
-export default Register; 
+export default withRouter(Register); 
