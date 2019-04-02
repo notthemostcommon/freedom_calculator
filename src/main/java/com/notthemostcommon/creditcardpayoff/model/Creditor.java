@@ -1,6 +1,7 @@
 package com.notthemostcommon.creditcardpayoff.model;
 
 
+import com.notthemostcommon.creditcardpayoff.User.AppUser;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,6 @@ public class Creditor {
     private float limit;
     private float minPayment;
     @ManyToOne(cascade=CascadeType.PERSIST)
-    private  User user;
+    private AppUser user;
 
 }

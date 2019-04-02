@@ -1,4 +1,4 @@
-package com.notthemostcommon.creditcardpayoff.model;
+package com.notthemostcommon.creditcardpayoff.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,17 +13,25 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
+    private String password;
+    private String username;
 
 
-    public User(String firstName, String lastName){
+    public AppUser(String firstName, String lastName, String password, String username){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
+        this.username = username;
+    }
+
+    public String getUsername(){
+        return username;
     }
 }
