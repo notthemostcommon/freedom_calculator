@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react'; 
+import Cookies from 'universal-cookie'; 
 import {
     Form, 
     FormGroup, 
@@ -7,6 +8,8 @@ import {
     Input, 
     Button
 } from 'reactstrap'; 
+import { ACCESS_TOKEN } from '../../constants';
+const cookies = new Cookies(); 
 
 class Login extends Component {
 
@@ -51,7 +54,9 @@ class Login extends Component {
             body: JSON.stringify(item),
         }) 
         .then(res => {
-            console.log("success " , res); 
+            let token = res.headers.get('authorization'); 
+            cookies.set("accessToken", token, {path: '/'}); 
+            console.log("token ", cookies.get('accessToken') ); 
         }).catch(err => {
             console.log("error ", err); 
         }); 

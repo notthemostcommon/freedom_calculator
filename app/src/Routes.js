@@ -13,6 +13,7 @@ import App from './App';
         <Route exact path="/" component ={App}/>
         <Route path="/register" component={Register}/>
         <Route path="/login" component={Login}/>
+          
       </Switch>
   )
 
