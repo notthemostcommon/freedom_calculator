@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
-import { ACCESS_TOKEN } from '../../constants';
+import Cookies from 'universal-cookie'; 
+import { Button } from 'reactstrap'; 
+import { withRouter } from 'react-router-dom'; 
 
-export default class Logout extends Component {
+const cookies = new Cookies(); 
+class Logout extends Component {
 
 handleLogout = () => {
-    redirectTo="/"; 
-    localStorage.removeItem(ACCESS_TOKEN); 
+    cookies.remove('accessToken');
+    console.log(cookies.getAll());  
+    this.props.history.push('/'); 
+    
+    
+    // window.location.reload();
 }
   render() {
     return (
-      <div>
-        
-      </div>
+      <>
+        <Button color="primary" onClick={()=>this.handleLogout()}>Sign Out</Button>
+      </>
     )
   }
 }
+
+export default withRouter(Logout); 

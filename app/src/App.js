@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Register from './components/Authentication/Register';
-import { 
-  Route, 
-  withRouter, 
-  Switch
-} from 'react-router-dom'; 
+import Logout from './components/Authentication/Logout';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1> Hello to my app! </h1>/>
+      <Logout/> 
+        <h1> Hello to my app! </h1>
       </div>
     );
   }

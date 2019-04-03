@@ -8,7 +8,6 @@ import {
     Input, 
     Button
 } from 'reactstrap'; 
-import { ACCESS_TOKEN } from '../../constants';
 const cookies = new Cookies(); 
 
 class Login extends Component {
