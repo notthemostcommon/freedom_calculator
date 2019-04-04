@@ -42,7 +42,6 @@ class Login extends Component {
     async handleSubmit(e) {
         e.preventDefault(); 
         const {item} = this.state; 
-        console.log(item)
 
         await fetch('/login', {
             method: 'post', 
@@ -69,12 +68,12 @@ class Login extends Component {
             <Form onSubmit={this.handleSubmit} >
                 <FormGroup>
                     <Label for="username">Email Address</Label>
-                        <Input type="text" name="username" id="username" value={item.username || ''}
+                        <Input type="email" name="username" id="username" value={item.username || ''}
                         onChange={this.handleChange} autoComplete="username" />
                 </FormGroup>
                 <FormGroup>
                     <Label for="password">Password</Label>
-                        <Input type="text" name="password" id="password" value={item.password || ''}
+                        <Input type="password" name="password" id="password" value={item.password || ''}
                         onChange={this.handleChange} autoComplete="off" />
                 </FormGroup>
                 <FormGroup>

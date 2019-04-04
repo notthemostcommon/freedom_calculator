@@ -43,7 +43,7 @@ class Register extends Component {
     async handleSubmit(e) {
         e.preventDefault(); 
         const {item} = this.state; 
-        console.log(item)
+        console.log(JSON.stringify(item))
 
         await fetch('/users/register', {
             method: 'post', 

@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
+@Table(name="users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,9 +17,17 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
+
+    @NotEmpty
     private String password;
+
+    @NotEmpty
     private String username;
 
 
@@ -29,9 +36,5 @@ public class AppUser {
         this.lastName = lastName;
         this.password = password;
         this.username = username;
-    }
-
-    public String getUsername(){
-        return username;
     }
 }

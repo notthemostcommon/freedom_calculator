@@ -1,7 +1,5 @@
-package com.notthemostcommon.creditcardpayoff.model;
+package com.notthemostcommon.creditcardpayoff.User;
 
-import com.notthemostcommon.creditcardpayoff.User.AppUser;
-import com.notthemostcommon.creditcardpayoff.User.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

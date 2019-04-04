@@ -1,5 +1,6 @@
 package com.notthemostcommon.creditcardpayoff.Security;
 
+
 public class SecurityConstraints {
 
     public static final String SECRET = "SecretKeyToGenJWTs";
@@ -7,4 +8,6 @@ public class SecurityConstraints {
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
     public static final String REGISTER_URL = "/users/register";
+
+
 }

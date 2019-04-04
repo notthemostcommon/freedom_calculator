@@ -47,7 +47,7 @@ public class UserController {
     ResponseEntity<?> newUser(@RequestBody AppUser newUser) throws URISyntaxException {
         newUser.setPassword(bCrypt.encode(newUser.getPassword()));
         Resource<AppUser> resource = assembler.toResource(repository.save(newUser));
-        System.out.println("Password >>>>>>>>>>>>>" + newUser.getPassword());
+        System.out.println("register resource = " + resource);
         return ResponseEntity
                 .created(new URI(resource.getId().expand().getHref()))
                 .body(resource);

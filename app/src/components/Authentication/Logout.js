@@ -10,9 +10,7 @@ handleLogout = () => {
     cookies.remove('accessToken');
     console.log(cookies.getAll());  
     this.props.history.push('/'); 
-    
-    
-    // window.location.reload();
+    window.location.reload();
 }
   render() {
     return (

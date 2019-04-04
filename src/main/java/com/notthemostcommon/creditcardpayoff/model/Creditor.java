@@ -22,7 +22,7 @@ public class Creditor {
     private float balance;
     private float limit;
     private float minPayment;
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    private AppUser user;
+//    @ManyToOne(cascade=CascadeType.PERSIST)
+//    private AppUser user;
 
 }

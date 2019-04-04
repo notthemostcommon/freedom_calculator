@@ -7,12 +7,15 @@ import {
 import Register from './components/Authentication/Register';
 import Login from './components/Authentication/Login';
 import App from './App';
+import AddCreditor from './components/creditors/AddCreditor';
 
   const routes = (
       <Switch>
         <Route exact path="/" component ={App}/>
         <Route path="/register" component={Register}/>
         <Route path="/login" component={Login}/>
+        {/* <Route path="/creditors" component={CreditorLists}/> */}
+        <Route path="/creditors/new" component={AddCreditor}/>
           
       </Switch>
   )
