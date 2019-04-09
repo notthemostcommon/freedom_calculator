@@ -1,11 +1,13 @@
 package com.notthemostcommon.creditcardpayoff.User;
 
+import com.notthemostcommon.creditcardpayoff.Debts.Debt;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Table(name="users")
 @Data
@@ -30,11 +32,15 @@ public class AppUser {
     @NotEmpty
     private String username;
 
+//    @OneToMany(mappedBy="appUser", cascade = CascadeType.ALL)
+//    private Set<Debt> debts;
+
 
     public AppUser(String firstName, String lastName, String password, String username){
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.username = username;
+//        this.debts.forEach(x -> x.setAppUser(this));
     }
 }

@@ -29,13 +29,14 @@ public class DebtController {
     }
 
     @PostMapping
-    public void addDebt(@RequestBody Debt debt) {
+    public void addDebt(@RequestBody Debt debt, Principal principal) {
+        String username = principal.getName();
+        debt.setAppUser(userRepository.findByUsername(username));
         debtRepository.save(debt);
     }
 
     @GetMapping
     public ResponseEntity<?> getDebts(Principal principal) {
-        System.out.println("getdebts >>>>>>>>>> " + principal.getName());
         List<Debt> result = debtService.findAll();
         return new ResponseEntity(result, HttpStatus.OK);
     }

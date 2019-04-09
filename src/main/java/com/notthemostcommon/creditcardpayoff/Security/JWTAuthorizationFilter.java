@@ -33,7 +33,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse res,
                                     FilterChain chain ) throws IOException, ServletException {
 
-        UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(req);
         String header = req.getHeader(HEADER_STRING);
 
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
@@ -41,6 +40,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
 
+        UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(req);
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         chain.doFilter(req,res);
     }
@@ -48,14 +48,15 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest req ) {
         String token = req.getHeader(HEADER_STRING);
         if (token != null) {
+            System.out.println("token is not null " );
             try {
 
                 String user = JWT.require(Algorithm.HMAC512(SECRET.getBytes()))
                         .build()
                         .verify(token.replace(TOKEN_PREFIX, ""))
                         .getSubject();
-
                 if(user != null){
+                    System.out.println("user is not null ");
                     return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
 
                 }

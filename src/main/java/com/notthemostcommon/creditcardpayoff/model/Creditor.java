@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "creditor_info")
 public class Creditor {
 
     @Id
