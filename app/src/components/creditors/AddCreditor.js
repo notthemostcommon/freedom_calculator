@@ -27,13 +27,6 @@ class AddCreditor extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-//   async componentDidMount() {
-//     if (this.props.match.params.id !== 'new') {
-//         console.log(this.props.match.params.id); 
-//       const creditor = await (await fetch(`/api/creditor/${this.props.match.params.id}`)).json();
-//       this.setState({item: creditor});
-//     }
-//   }
 
 componentDidMount() {
   this.getAccessToken()
@@ -44,9 +37,6 @@ getAccessToken = () => {
   this.setState({token})
   console.log(token); 
   return token; 
-  // const JSONToken = JSON.stringify(token);
-  // console.log(JSONToken); 
-
 }
 
 
