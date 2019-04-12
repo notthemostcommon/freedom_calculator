@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-ReactDOM.render(
-        
-            <App />
+import {UserProvider} from './globalStore/UserContext';
+import { BrowserRouter as Router } from 'react-router-dom';
+import routes from './routes/Routes';
 
+
+
+ReactDOM.render(
+  <UserProvider>
+    <Router>
+      <App />
+      {routes}
+    </Router>
+  </UserProvider>
   ,
     document.getElementById('root'));
 

@@ -1,25 +1,19 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import UserContext, { userStore } from './globalStore/UserContext';
+
 import './App.css';
 import Login from './components/Authentication/Login';
-import { BrowserRouter as Router } from 'react-router-dom';
-import routes from './routes/Routes';
-import {UserProvider} from './globalStore/UserContext';
 
 const App = () => {
+  const { state, dispatch } = userStore(); 
 
-    return (
+  useEffect(() => {
+    dispatch({type:"login"})
+}, [])
+
+   return (
       <div className="App">
-      <UserProvider>
-        <Router>
-          
-            <h1> Hello to my app! </h1>
-            
-            
-            {routes}
-        </Router>
-
-        
-      </UserProvider>
+        <h1> Hello to my app! </h1>
       </div>
     );
   }

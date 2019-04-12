@@ -5,12 +5,8 @@ import Cookies from 'universal-cookie';
 import Axios from 'axios';
 import useForm from '../hooks/useForm';
 
-export default function CreateCreditors() {
-    const [debtName, setDebtname] = useState(""); 
-    const [apr, setApr] = useState(""); 
-    const [balance, setBalance] = useState(""); 
-    const [creditLimit, setCreditLimit] = useState(""); 
-    const [minPayment, setMinPayment] = useState("");
+const CreateCreditors = () => {
+    
     const { values, handleChange, handleSubmit } = useForm(login);  
 
     function login () {
@@ -82,7 +78,6 @@ export default function CreateCreditors() {
       </Container>
 
     ); 
-
-
-
 }
+
+export default withRouter(CreateCreditors); 

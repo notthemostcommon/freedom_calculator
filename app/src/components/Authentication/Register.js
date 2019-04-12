@@ -18,7 +18,6 @@ const Register = (props) =>  {
     const { values, handleChange, handleSubmit } = useForm(register);  
 
     async function register (){
-        
         await fetch('/users/register', {
             method: 'post', 
             headers: {
@@ -28,7 +27,6 @@ const Register = (props) =>  {
             body: JSON.stringify(values),
         }) 
         .then(res => {
-            console.log("success " , res); 
             props.history.push("/login"); 
         }).catch(err => {
             console.log("error ", err); 
