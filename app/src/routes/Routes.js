@@ -4,15 +4,15 @@ import {
     Route,
     Switch
   } from 'react-router-dom';
-import Register from './components/Authentication/Register';
-import Login from './components/Authentication/Login';
-import Logout from './components/Authentication/Logout';
-import App from './App';
-import AddCreditor from './components/creditors/AddCreditor';
+import Register from '../components/Authentication/Register';
+import Login from '../components/Authentication/Login';
+import Logout from '../components/Authentication/Logout';
+import AddCreditor from '../components/creditors/AddCreditor';
+import Home from '../components/Home';
 
   const routes = (
       <Switch>
-        <Route exact path="/" component ={App}/>
+        <Route exact path="/" component ={Home}/>
         <Route path="/register" component={Register}/>
         <Route path="/login" component={Login}/>
         <Route path="/logout" component={Logout}/>

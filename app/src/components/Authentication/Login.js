@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState, useCallback } from 'react'; 
+import React, { useCallback } from 'react'; 
 import Cookies from 'universal-cookie'; 
 import {
     Form, 
@@ -14,7 +14,7 @@ import UserContext, { userStore } from '../../globalStore/UserContext';
 
 const cookies = new Cookies(); 
 
-const Login = () =>  {
+const Login = (props) =>  {
     
 const { state, dispatch } = userStore(); 
 
@@ -22,24 +22,23 @@ const { values, handleChange, handleSubmit } = useForm(signIn);
 
 const setLogin = useCallback(() => dispatch({type: "login"}), [dispatch]); 
 
-function signIn() {
-    console.log("inside signIn");
-    
+function signIn() {    
         axios.post("/login", values )
-        .then(res => {
-        console.log("res ", res);
-        
+        .then(res => {        
         let accessToken = res.headers["authorization"]; 
         cookies.set("accessToken", accessToken, {path: "/"}) 
-        setLogin();             
+        setLogin();  
+        console.log("state returns ", state.user);  
+        console.log("cookies ", cookies.get("accessToken"));
+        props.history.push("/")
 
     }).catch(err => {
         console.log("error ", err);
-        
     })            
 }
 return (
 <Container>
+
     <Form onSubmit={handleSubmit} >
         <FormGroup>
             <Label for="username">Email Address</Label>

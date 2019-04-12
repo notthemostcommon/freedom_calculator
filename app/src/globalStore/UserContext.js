@@ -9,11 +9,10 @@ const UserContext = createContext();
 const Actions = {...userActions}; 
 
 const reducer = (state, action) => {
-    console.log("reducer action:" , action);
     
     const act = Actions[action.type]; 
     const update = act(state); 
-    console.log("reducer act and update" , act, update.user);
+    console.log("reducer act and update" , update.user);
     
     return {...state, ...update}
 }
@@ -23,6 +22,7 @@ const initialState = {
 };
 export const UserProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState); 
+    console.log("userprovider ", state.user);
     
     return (
         <UserContext.Provider  value={{ state, dispatch }} >  
