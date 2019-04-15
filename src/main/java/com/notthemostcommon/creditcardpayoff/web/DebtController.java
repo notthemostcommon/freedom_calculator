@@ -3,6 +3,7 @@ package com.notthemostcommon.creditcardpayoff.web;
 import com.notthemostcommon.creditcardpayoff.Debts.Debt;
 import com.notthemostcommon.creditcardpayoff.Debts.DebtRepository;
 import com.notthemostcommon.creditcardpayoff.Debts.DebtService;
+import com.notthemostcommon.creditcardpayoff.User.AppUser;
 import com.notthemostcommon.creditcardpayoff.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,8 @@ public class DebtController {
 
     @GetMapping
     public ResponseEntity<?> getDebts(Principal principal) {
-        List<Debt> result = debtService.findAll();
+        AppUser user = userRepository.findByUsername(principal.getName());
+        List<Debt> result = debtService.findAllByUserId(user.getId());
         return new ResponseEntity(result, HttpStatus.OK);
     }
 

@@ -18,6 +18,6 @@ public class DebtServiceImpl implements DebtService {
 
     @Override
     public List<Debt> findAllByUserId(Long id) {
-        return debtRepository.findAllById(id);
+        return debtRepository.findByAppUserId(id);
     }
 }

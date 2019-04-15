@@ -36,16 +36,7 @@ public class Debt {
     @ManyToOne
     @JoinColumn(name = "appUser_id")
     private AppUser appUser;
-
-//    protected Debt(){}
-////
-//    public Debt(String debtName, float apr, float balance, float creditLimit, float minPayment) {
-//        this.debtName = debtName;
-//        this.apr = apr;
-//        this.balance = balance;
-//        this.creditLimit = creditLimit;
-//        this.minPayment = minPayment;
-//    }
+    
 
 
 }

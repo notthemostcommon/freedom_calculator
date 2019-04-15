@@ -16,7 +16,7 @@ import Home from '../components/Home';
         <Route path="/register" component={Register}/>
         <Route path="/login" component={Login}/>
         <Route path="/logout" component={Logout}/>
-        {/* <Route path="/creditors" component={CreditorLists}/> */}
+        {/* <Route path="/creditors" component={CreditorList}/> */}
         <Route path="/creditors/new" component={AddCreditor}/>
           
       </Switch>
