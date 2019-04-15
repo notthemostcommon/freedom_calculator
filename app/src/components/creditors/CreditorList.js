@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'; 
-import {HEADERS} from '../../constants'; 
-import { userStore } from '../../globalStore/UserContext'; 
 import { request } from '../../util/APIUtils';
 import { DEBT_LIST_URL } from '../../constants/index';
 
 
 const CreditorList = () => {
     const [data, setData] = useState(); 
-    const {state} = userStore(); 
     
     useEffect(() => {
     

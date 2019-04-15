@@ -5,6 +5,8 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 import useForm from '../hooks/useForm';
 import { userStore } from '../../globalStore/UserContext';
+import { request } from '../../util/APIUtils';
+import { DEBT_LIST_URL } from '../../constants/index';
 
 const cookies = new Cookies(); 
 
@@ -19,7 +21,7 @@ const AddCreditor = (props) =>  {
   }  
   
   async function addAccount() {
-    await axios.post('/debts', values, {headers: headers})
+    await request.post(DEBT_LIST_URL, values )
     .then(res => {
         props.history.push('/creditors');
     })
