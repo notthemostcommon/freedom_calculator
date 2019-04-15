@@ -8,9 +8,7 @@ export const userInitialState = {
     }
 }; 
 
-const getToken = () => {
-    console.log("getToken reducer", cookies.get("accessToken"));
-    
+const getToken = () => {    
     return cookies.get("accessToken"); 
 }
 

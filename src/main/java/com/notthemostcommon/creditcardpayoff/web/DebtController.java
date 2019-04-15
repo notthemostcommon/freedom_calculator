@@ -39,6 +39,7 @@ public class DebtController {
     @GetMapping
     public ResponseEntity<?> getDebts(Principal principal) {
         AppUser user = userRepository.findByUsername(principal.getName());
+        System.out.println("userName " + user.getId());
         List<Debt> result = debtService.findAllByUserId(user.getId());
         return new ResponseEntity(result, HttpStatus.OK);
     }

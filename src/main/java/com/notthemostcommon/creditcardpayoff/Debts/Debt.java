@@ -36,7 +36,7 @@ public class Debt {
     @ManyToOne
     @JoinColumn(name = "appUser_id")
     private AppUser appUser;
-    
+
 
 
 }

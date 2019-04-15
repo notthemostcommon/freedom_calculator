@@ -6,6 +6,7 @@ import axios from 'axios';
 import useForm from '../hooks/useForm';
 import { userStore } from '../../globalStore/UserContext';
 
+const cookies = new Cookies(); 
 
 const AddCreditor = (props) =>  {
   const { values, handleChange, handleSubmit } = useForm(addAccount);  
@@ -14,9 +15,9 @@ const AddCreditor = (props) =>  {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json', 
-    'Authorization': state.user.accessToken, 
+    'Authorization': cookies.get("accessToken"), 
   }  
-
+  
   async function addAccount() {
     await axios.post('/debts', values, {headers: headers})
     .then(res => {
