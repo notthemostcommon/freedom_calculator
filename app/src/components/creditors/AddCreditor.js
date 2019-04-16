@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import Cookies from 'universal-cookie';
-import axios from 'axios';
 import useForm from '../hooks/useForm';
-import { userStore } from '../../globalStore/UserContext';
 import { request } from '../../util/APIUtils';
 import { DEBT_LIST_URL } from '../../constants/index';
 
-const cookies = new Cookies(); 
 
 const AddCreditor = (props) =>  {
   const { values, handleChange, handleSubmit } = useForm(addAccount);  
-  const { state } = userStore(); 
-
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json', 
-    'Authorization': cookies.get("accessToken"), 
-  }  
   
   async function addAccount() {
     await request.post(DEBT_LIST_URL, values )

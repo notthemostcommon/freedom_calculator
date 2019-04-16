@@ -28,8 +28,6 @@ function signIn() {
         let accessToken = res.headers["authorization"]; 
         cookies.set("accessToken", accessToken, {path: "/"}) 
         setLogin();  
-        console.log("state returns ", state.user);  
-        console.log("cookies ", cookies.get("accessToken"));
         props.history.push("/")
 
     }).catch(err => {
