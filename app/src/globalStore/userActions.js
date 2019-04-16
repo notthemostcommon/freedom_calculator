@@ -5,6 +5,7 @@ const cookies = new Cookies();
 export const userInitialState = {
     user: {
         accessToken: "",
+        isAuth: null
     }
 }; 
 
@@ -15,11 +16,11 @@ const getToken = () => {
 export const userActions = {
     login: state => ({
         ...state, 
-        user: {accessToken: getToken() }
+        user: {accessToken: getToken(), isAuth: true }
     }),
 
     logout: state => ({
         ...state, 
-        user: {accessToken: "" }
+        user: {accessToken: "", isAuth: false }
     }),
 }

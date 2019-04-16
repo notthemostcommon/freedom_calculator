@@ -11,6 +11,8 @@ const NavBar = () => {
     const toggleNavbar = () => {
         setcollapsed(!collapsed); 
     }; 
+    console.log("navbar", state.user);
+    
 
     return (
         <Navbar color="faded" light>
@@ -18,6 +20,9 @@ const NavBar = () => {
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
+          <NavItem>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
           {state.user.accessToken ? 
               <div>
               <NavItem>

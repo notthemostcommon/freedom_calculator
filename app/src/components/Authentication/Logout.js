@@ -7,7 +7,8 @@ import { userStore } from '../../globalStore/UserContext';
 const cookies = new Cookies(); 
 const Logout = (props) => {
 
-  const { dispatch } = userStore(); 
+  const { state, dispatch } = userStore(); 
+  console.log("logout ", state.user);
 
   const handleLogout = () => {
     cookies.remove("accessToken", {path: "/"});
