@@ -32,9 +32,6 @@ public class AppUser {
     @NotEmpty
     private String username;
 
-//    @OneToMany(mappedBy="appUser", cascade = CascadeType.ALL)
-//    private Set<Debt> debts;
-
 
     public AppUser(String firstName, String lastName, String password, String username){
         this.firstName = firstName;

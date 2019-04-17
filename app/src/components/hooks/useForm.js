@@ -12,7 +12,6 @@ const useForm = (callback) => {
         e.persist();         
         setValues(values => ({ ...values, [e.target.name]: e.target.value}));  
     }; 
-
     return {
         handleChange, 
         handleSubmit, 

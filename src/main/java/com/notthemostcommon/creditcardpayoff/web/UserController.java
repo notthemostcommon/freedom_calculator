@@ -47,7 +47,6 @@ public class UserController {
     ResponseEntity<?> newUser(@RequestBody AppUser newUser) throws URISyntaxException {
         newUser.setPassword(bCrypt.encode(newUser.getPassword()));
         Resource<AppUser> resource = assembler.toResource(repository.save(newUser));
-        System.out.println("register resource = " + resource);
         return ResponseEntity
                 .created(new URI(resource.getId().expand().getHref()))
                 .body(resource);
@@ -67,7 +66,6 @@ public class UserController {
 
         AppUser updatedUser = repository.findById(id)
                 .map(user -> {
-                    System.out.println(user);
                     user.setFirstName(newUser.getFirstName());
                     user.setLastName(newUser.getLastName());
                     return repository.save(user);
