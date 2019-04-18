@@ -1,5 +1,6 @@
 package com.notthemostcommon.creditcardpayoff.web;
 
+import com.notthemostcommon.creditcardpayoff.Calculator.DebtCalcService;
 import com.notthemostcommon.creditcardpayoff.Debts.Debt;
 import com.notthemostcommon.creditcardpayoff.Debts.DebtRepository;
 import com.notthemostcommon.creditcardpayoff.Debts.DebtService;
@@ -12,7 +13,9 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/debts")
@@ -20,6 +23,9 @@ public class DebtController {
 
     @Autowired
     DebtService debtService;
+
+    @Autowired
+    DebtCalcService debtCalcService;
 
     private DebtRepository debtRepository;
     private UserRepository userRepository;
@@ -39,7 +45,11 @@ public class DebtController {
     @GetMapping
     public ResponseEntity<?> getDebts(Principal principal) {
         AppUser user = userRepository.findByUsername(principal.getName());
-        List<Debt> result = debtService.findAllByUserId(user.getId());
+        List<Debt> debtList = debtService.findAllByUserId(user.getId());
+        Double totalBalance = debtCalcService.calculateTotal(principal, "balance");
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("debts", debtList);
+        result.put("totalBalance", totalBalance);
         return new ResponseEntity(result, HttpStatus.OK);
     }
 

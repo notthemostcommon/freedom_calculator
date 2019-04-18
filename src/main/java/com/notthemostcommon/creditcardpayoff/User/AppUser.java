@@ -26,9 +26,11 @@ public class AppUser {
     @NotEmpty
     private String lastName;
 
+    @Column(unique=true)
     @NotEmpty
     private String password;
 
+    @Column(unique = true)
     @NotEmpty
     private String username;
 
