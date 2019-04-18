@@ -1,4 +1,4 @@
-package com.notthemostcommon.creditcardpayoff.CalculatorTests;
+package com.notthemostcommon.creditcardpayoff.Calculator;
 
 import com.notthemostcommon.creditcardpayoff.Calculator.DebtCalcService;
 import com.notthemostcommon.creditcardpayoff.Debts.Debt;
