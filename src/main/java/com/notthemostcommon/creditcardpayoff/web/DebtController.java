@@ -47,9 +47,13 @@ public class DebtController {
         AppUser user = userRepository.findByUsername(principal.getName());
         List<Debt> debtList = debtService.findAllByUserId(user.getId());
         Double totalBalance = debtCalcService.calculateTotal(principal, "balance");
+        Double totalCreditLimit = debtCalcService.calculateTotal(principal, "creditLimit");
+        Double totalMinPayment = debtCalcService.calculateTotal(principal, "minPayment");
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("debts", debtList);
         result.put("totalBalance", totalBalance);
+        result.put("totalCreditLimit", totalCreditLimit);
+        result.put("totalMinPayment", totalMinPayment);
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
