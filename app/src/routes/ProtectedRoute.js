@@ -6,14 +6,11 @@ import { Spinner } from 'reactstrap';
 
 const ProtectedRoute = ({component: Component, ...rest }) => {
     const { state } = userStore(); 
-    console.log("protected route ", state.user);
     useEffect(() => {
-        console.log("protected route effect ", state.user);
         
       
     }, [])
     return (
-        state.user.isAuth ? 
         <Route 
         render = {props => 
             state.user.isAuth ? 
@@ -21,7 +18,7 @@ const ProtectedRoute = ({component: Component, ...rest }) => {
             <Redirect to="/login" />
         }
         {...rest}
-        /> : <Spinner color="dark" />
+        /> 
 
 
     )

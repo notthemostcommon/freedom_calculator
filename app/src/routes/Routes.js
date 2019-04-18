@@ -23,13 +23,13 @@ import UserContext, { userStore, UserProvider } from '../globalStore/UserContext
 
       <Router>
           <Switch> 
-            <ProtectedRoute path="/dashboard" component={Dashboard}/>
             <Route exact path="/" component ={Home}/>
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
-            <Route path="/logout" component={Logout}/>
-            <Route path="/creditors/new" component={AddCreditor}/>
-            <Route path="/creditors" component={CreditorList}/>
+            <ProtectedRoute path="/dashboard" component={Dashboard}/>
+            <ProtectedRoute path="/logout" component={Logout}/>
+            <ProtectedRoute path="/creditors/new" component={AddCreditor}/>
+            <ProtectedRoute path="/creditors" component={CreditorList}/>
             {/* <Route path="/dashboard" component={Dashboard}/> */}
               
           </Switch>
