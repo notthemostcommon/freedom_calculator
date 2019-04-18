@@ -1,24 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { request } from '../../util/APIUtils';
-import { DEBT_LIST_URL } from '../../constants/index';
+
 import { Table } from 'reactstrap';
 
 
-const CreditorList = () => {
-    const [data, setData] = useState([]); 
+const CreditorList = (props) => {
     
-    useEffect(() => {
-    
-        const  fetchData = async() => {
-            const response = request.get(DEBT_LIST_URL)
-                .then(res => {
-                    setData(res.data)        
-                })   
-            }; 
-            fetchData()            
-        },[]);         
 
-    const displayData = data.map( (data, index) =>
+    const displayData = props.debts.map( (data, index) =>
         <tr key={index}>
             <th scope="row">{index + 1}</th>
             <td>{data.debtName}</td>

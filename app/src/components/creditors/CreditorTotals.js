@@ -4,9 +4,9 @@ const CreditorTotal = (props) => {
 
     return(
         <>
-        <div>Totals</div>
-        <div>Monthly Payment Total</div>
-        <div>Total Credit card usage</div>
+        <div>Totals {props.totals.totalBalance}</div>
+        <div>Monthly Payment Total {props.totals.totalMinPayment}</div>
+        <div>Total Credit  {props.totals.totalCreditLimit}</div>
             
         </>
 
