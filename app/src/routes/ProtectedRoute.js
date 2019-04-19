@@ -6,27 +6,8 @@ import { Spinner } from 'reactstrap';
 
 const ProtectedRoute = ({component: Component, ...rest }) => {
     const { state } = userStore(); 
-    console.log("protected route ", state.user);
-    useEffect(() => {
-        setTimeout(2000); 
-        console.log("protected route effect ", state.user);
-        
-      
-    }, []); 
-
-    const launchSpinner = () => {
-    
-        let whatnext = state.user.isAuth ? 
-        <Spinner color = "light"/> :
-        < Redirect to="/"/>
-
-        return whatnext; 
-
-    }
-  
-
     return (
-        state.user.isAuth ? 
+        // state.user.isAuth ? 
         <Route 
             render = {props => 
             state.user.isAuth ? 
@@ -34,9 +15,7 @@ const ProtectedRoute = ({component: Component, ...rest }) => {
             <Redirect to="/login" />
         }
         {...rest}
-        /> : setTimeout(launchSpinner(), 2000)
-
-
+        /> 
     )
 
 }

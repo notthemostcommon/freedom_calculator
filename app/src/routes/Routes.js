@@ -14,6 +14,7 @@ import CreditorList from '../components/creditors/CreditorList';
 import Dashboard from '../containers/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
 import UserContext, { userStore, UserProvider } from '../globalStore/UserContext';
+import NavBar from '../components/NavBar';
 
 
   const Routes = () => {
@@ -22,6 +23,7 @@ import UserContext, { userStore, UserProvider } from '../globalStore/UserContext
     return (
 
       <Router>
+        <NavBar/>
           <Switch> 
             <Route exact path="/" component ={Home}/>
             <Route path="/register" component={Register}/>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import UserContext, { userStore } from '../globalStore/UserContext';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 
 
 const NavBar = () => {
@@ -16,37 +18,37 @@ const NavBar = () => {
 
     return (
         <Navbar color="faded" light>
-          <NavbarBrand href="/" className="mr-auto">Freedom Calculator</NavbarBrand>
+          <NavbarBrand to="/" className="mr-auto">Freedom Calculator</NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
           <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <Link to="/">Home</Link>
               </NavItem>
           {state.user.accessToken ? 
               <div>
               <NavItem>
-                <NavLink href="/logout/">Logout</NavLink>
+                <Link to="/logout/">Logout</Link>
               </NavItem>
               <NavItem>
-                <NavLink href="/dashboard/">Dashboard</NavLink>
+                <Link to="/dashboard/">Dashboard</Link>
               </NavItem>
               </div>
                : 
                <div>
 
                 <NavItem>
-                <NavLink href="/login/">Login</NavLink>
+                <Link to="/login/">Login</Link>
               </NavItem>
               <NavItem>
-              <NavLink href="/register/">Register</NavLink>
+              <Link to="/register/">Register</Link>
             </NavItem>
                </div>
 
           
         }
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <Link to="https://github.com/reactstrap/reactstrap">GitHub</Link>
               </NavItem>
             </Nav>
           </Collapse>
