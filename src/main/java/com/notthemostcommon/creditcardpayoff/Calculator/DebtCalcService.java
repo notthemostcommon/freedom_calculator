@@ -42,4 +42,34 @@ public class DebtCalcService {
         return totals;
     }
 
+    public float calcTotal ( List<Debt> list, String type) {
+        float totals =  0.00f;
+        for (Debt nums : list ) {
+            switch(type){
+                case "balance":
+                    totals += nums.getBalance();
+                    break;
+                case "creditLimit":
+                    totals += nums.getCreditLimit();
+                    break;
+                case "minPayment":
+                    totals += nums.getMinPayment();
+                    break;
+                default:
+                    return totals;
+            }
+
+        }
+        return totals;
+    }
+
+    public float calculateUsage(float balanceTotal, float limitTotal){
+      float usage = balanceTotal/limitTotal;
+      String u = String.format("%.2f", usage);
+        float f = Float.valueOf(u.trim()).floatValue();
+        System.out.println(f);
+
+        return f;
+    }
+
 }

@@ -12,7 +12,7 @@ const Dashboard = () => {
     useEffect(() => {
     
         const  fetchData = async() => {
-            const response = request.get(DEBT_LIST_URL)
+            request.get(DEBT_LIST_URL)
                 .then(res => {
                     setData(res.data.debts)
                     setTotals({"totalBalance": res.data.totalBalance, "totalMinPayment": res.data.totalMinPayment, "totalCreditLimit": res.data.totalCreditLimit})      

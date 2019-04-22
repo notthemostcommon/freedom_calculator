@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
-import UserContext, { userStore } from '../globalStore/UserContext';
-import Cookies from 'universal-cookie'; 
-
-const cookies = new Cookies(); 
+import React from 'react'
+import { userStore } from '../globalStore/UserContext';
 
 const Home = () => {
-    const { state, dispatch } = userStore(); 
-
-    console.log("home", state.user);
+    const { state } = userStore(); 
     
     return (
         <>

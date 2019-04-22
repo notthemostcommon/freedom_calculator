@@ -1,11 +1,5 @@
 package com.notthemostcommon.creditcardpayoff.Calculator;
 
-import com.notthemostcommon.creditcardpayoff.User.AppUser;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.math.BigDecimal;
-
-
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;

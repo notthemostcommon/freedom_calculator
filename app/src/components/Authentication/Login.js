@@ -10,13 +10,13 @@ import {
 } from 'reactstrap'; 
 import useForm from '../hooks/useForm';
 import axios from 'axios';
-import UserContext, { userStore } from '../../globalStore/UserContext';
+import { userStore } from '../../globalStore/UserContext';
 
 const cookies = new Cookies(); 
 
 const Login = (props) =>  {
     
-const { state, dispatch } = userStore(); 
+const { dispatch } = userStore(); 
 
 const { values, handleChange, handleSubmit } = useForm(signIn);  
 

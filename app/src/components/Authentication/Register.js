@@ -9,8 +9,6 @@ import {
 } from 'reactstrap'; 
 import { withRouter } from 'react-router-dom'; 
 import useForm from '../hooks/useForm';
-import axios from 'axios';
-import UserContext, { userStore } from '../../globalStore/UserContext';
 
 
 const Register = (props) =>  {

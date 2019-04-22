@@ -179,5 +179,39 @@ public class DebtCalcServiceTest {
 
     }
 
+    @Test
+    public void testGenericMethod(){
+        mockUserStub.setUsername(mockPrincipal.getName());
+        mockDebt = new TestDebtBuilder()
+                .withUser(mockUserStub)
+                .build();
+
+        List<Debt> mockDebtList = new ArrayList<>();
+        mockDebtList.add(mockDebt);
+        debtCalcService.calcTotal(mockDebtList,  "balance" );
+    }
+
+    @Test
+    public void shouldReturnCreditUsage(){
+        List<Debt> mockDebtList = new ArrayList<>();
+
+        mockUserStub.setUsername(mockPrincipal.getName());
+        mockDebt = new TestDebtBuilder()
+                .withUser(mockUserStub)
+                .build();
+        mockDebtList.add(mockDebt);
+        mockDebt.setId(2L);
+        mockDebtList.add(mockDebt);
+        mockDebt.setId(3L);
+        mockDebtList.add(mockDebt);
+
+        float balanceTotal = debtCalcService.calcTotal(mockDebtList,  "balance" );
+        float limitTotal = debtCalcService.calcTotal(mockDebtList,  "creditLimit" );
+
+        float usage = debtCalcService.calculateUsage(balanceTotal, limitTotal);
+
+        assertEquals(0.1, usage, 0.02);
+    }
+
 
 }

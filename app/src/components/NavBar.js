@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import UserContext, { userStore } from '../globalStore/UserContext';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import { userStore } from '../globalStore/UserContext';
+import { Link } from 'react-router-dom'
 
 
 
@@ -9,12 +9,9 @@ const NavBar = () => {
     const [collapsed, setcollapsed] = useState(true); 
     const { state } = userStore(); 
 
-
     const toggleNavbar = () => {
         setcollapsed(!collapsed); 
-    }; 
-    console.log("navbar", state.user);
-    
+    };     
 
     return (
         <Navbar color="faded" light>

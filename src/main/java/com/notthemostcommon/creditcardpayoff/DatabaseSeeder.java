@@ -1,5 +1,7 @@
 package com.notthemostcommon.creditcardpayoff;
 
+import com.notthemostcommon.creditcardpayoff.PayoffStrategy.PayoffStrategy;
+import com.notthemostcommon.creditcardpayoff.PayoffStrategy.StrategyRepository;
 import com.notthemostcommon.creditcardpayoff.User.AppUser;
 import com.notthemostcommon.creditcardpayoff.User.UserRepository;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,22 +26,26 @@ public class DatabaseSeeder {
     private UserRepository userRepository;
     private JdbcTemplate jdbcTemplate;
     private BCryptPasswordEncoder bCrypt;
+    private StrategyRepository strategyRepository;
 
 
     @Autowired
     public DatabaseSeeder(
             UserRepository userRepository,
             JdbcTemplate jdbcTemplate,
-            BCryptPasswordEncoder bCrypt){
+            BCryptPasswordEncoder bCrypt,
+            StrategyRepository strategyRepository){
 
         this.userRepository = userRepository;
         this.jdbcTemplate = jdbcTemplate;
         this.bCrypt = bCrypt;
+        this.strategyRepository = strategyRepository;
     }
 
     @EventListener
     public void seed(ContextRefreshedEvent event){
         seedUsersTable();
+        seedStrategyTable();
     }
 
     private void seedUsersTable(){
@@ -55,6 +62,24 @@ public class DatabaseSeeder {
             logger.info("Users Seeded");
         }
         logger.trace("Users Seeding Not Required");
+        }
+
+        private void seedStrategyTable(){
+        String sql = "SELECT * FROM payoff_strategy";
+        List<PayoffStrategy> strategies = jdbcTemplate.query(sql, (resultSet, rowNum) -> null);
+
+        if(strategies.size() <= 0){
+            PayoffStrategy snowball = new PayoffStrategy();
+            snowball.setStrategy("snowball");
+            PayoffStrategy avalanche = new PayoffStrategy();
+            avalanche.setStrategy("avalanche");
+            PayoffStrategy minPayment = new PayoffStrategy();
+            minPayment.setStrategy("minimum payment");
+
+            strategyRepository.saveAll(Arrays.asList(snowball, avalanche, minPayment));
+            logger.info("Strategy Seeded");
+        }
+        logger.trace("Strategy Seeding Not Required");
         }
     }
 

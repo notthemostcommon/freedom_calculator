@@ -13,15 +13,11 @@ import Home from '../components/Home';
 import CreditorList from '../components/creditors/CreditorList';
 import Dashboard from '../containers/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
-import UserContext, { userStore, UserProvider } from '../globalStore/UserContext';
 import NavBar from '../components/NavBar';
 
 
   const Routes = () => {
-    
-
     return (
-
       <Router>
         <NavBar/>
           <Switch> 
