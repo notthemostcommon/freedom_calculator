@@ -2,13 +2,13 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 import useForm from '../hooks/useForm';
-import { request } from '../../util/APIUtils';
+import client  from '../../util/APIUtils';
 import { DEBT_LIST_URL } from '../../constants/index';
 
 
 const AddCreditor = (props) =>  {
   const { values, handleChange, handleSubmit } = useForm(addAccount);  
-  
+  const request = client(); 
   async function addAccount() {
     await request.post(DEBT_LIST_URL, values )
     .then(res => {

@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie';
 import routes from './routes/Routes';
 
 const cookies = new Cookies(); 
+export const ACCESS_TOKEN = cookies.get("accessToken"); 
 
 const App = () => {
   const { state, dispatch } = userStore(); 
@@ -17,7 +18,7 @@ const App = () => {
 
    return (
       <div className="App">
-            <h1> Hello to my app! </h1>
+            
           {createRoutes}
           
       </div>

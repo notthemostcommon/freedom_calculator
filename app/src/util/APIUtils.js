@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { ACCESS_TOKEN } from '../constants';
+import { ACCESS_TOKEN } from '../App';
+import { userStore } from '../globalStore/UserContext';
 
-const client = (token = null) => {
+const client = () => {
+    const {state} = userStore(); 
+    const token = state.user.accessToken; 
     const defaultOptions = {
         headers: {
-            "Authorization": token ? `${token}` : '',
+            "Authorization": `${token}`,
             'Accept': 'application/json',
             'Content-Type': 'application/json', 
         },
@@ -19,4 +22,4 @@ const client = (token = null) => {
     };
 };
 
-export const request = client(ACCESS_TOKEN);
+export default client; 
