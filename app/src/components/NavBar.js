@@ -18,8 +18,8 @@ const NavBar = () => {
           <NavbarBrand to="/" className="mr-auto">Freedom Calculator</NavbarBrand>
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
-          <NavItem>
+          <Nav navbar onClick={toggleNavbar}>
+            <NavItem >
                 <Link to="/">Home</Link>
               </NavItem>
           {state.user.accessToken ? 

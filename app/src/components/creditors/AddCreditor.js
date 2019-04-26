@@ -12,7 +12,7 @@ const AddCreditor = (props) =>  {
   async function addAccount() {
     await request.post(DEBT_LIST_URL, values )
     .then(res => {
-        props.history.push('/creditors');
+        props.history.push('/dashboard');
     })
     .catch(err => {
         console.log("error " , err); 

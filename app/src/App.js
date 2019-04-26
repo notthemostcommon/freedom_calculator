@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     (cookies.get("accessToken") && state.user.isAuth == null) && 
-    dispatch({type:"login"})
+    dispatch({type:"login", payload:"already logged in"})
 }, []);
 
    return (

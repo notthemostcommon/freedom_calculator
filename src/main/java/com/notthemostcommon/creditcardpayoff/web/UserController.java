@@ -1,8 +1,10 @@
 package com.notthemostcommon.creditcardpayoff.web;
 
 import com.notthemostcommon.creditcardpayoff.User.AppUser;
+import com.notthemostcommon.creditcardpayoff.User.dto.UserCreationDTO;
 import com.notthemostcommon.creditcardpayoff.UserNotFoundException;
 import com.notthemostcommon.creditcardpayoff.User.UserRepository;
+import com.notthemostcommon.creditcardpayoff.util.DTO;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    ResponseEntity<?> newUser(@RequestBody AppUser newUser) throws URISyntaxException {
+    ResponseEntity<?> newUser(@DTO(UserCreationDTO.class) AppUser newUser) throws URISyntaxException {
         newUser.setPassword(bCrypt.encode(newUser.getPassword()));
         Resource<AppUser> resource = assembler.toResource(repository.save(newUser));
         return ResponseEntity

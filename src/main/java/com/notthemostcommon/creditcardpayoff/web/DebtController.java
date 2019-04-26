@@ -9,6 +9,7 @@ import com.notthemostcommon.creditcardpayoff.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,7 @@ public class DebtController {
 
     @GetMapping
     public ResponseEntity<?> getDebts(Principal principal) {
+        Object userObj = SecurityContextHolder.getContext().getAuthentication();
         AppUser user = userRepository.findByUsername(principal.getName());
         List<Debt> debtList = debtService.findAllByUserId(user.getId());
         Double totalBalance = debtCalcService.calculateTotal(principal, "balance");

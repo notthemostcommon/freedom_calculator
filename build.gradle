@@ -33,6 +33,7 @@ dependencies {
     compile 'org.springframework.security:spring-security-oauth2-jose'
     compile("com.auth0:java-jwt:3.4.0")
     compile group: 'org.apache.commons', name: 'commons-math3', version: '3.2'
+    compile('org.modelmapper:modelmapper:2.3.0')
 
 
 	runtimeOnly 'com.h2database:h2'
@@ -42,6 +43,8 @@ dependencies {
 	testImplementation('org.junit.jupiter:junit-jupiter:5.4.2')
 	testCompile group: 'org.junit', name: 'junit5-engine', version: '5.0.0-ALPHA'
 	testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+	testCompile group: 'org.springframework.security', name: 'spring-security-test', version: '4.0.0.RELEASE'
+
 
 
 }
