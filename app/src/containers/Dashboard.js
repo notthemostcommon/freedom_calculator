@@ -5,6 +5,7 @@ import  client  from '../util/APIUtils';
 import { DEBT_LIST_URL } from '../constants/index';
 import { Link } from 'react-router-dom'; 
 import { userStore } from '../globalStore/UserContext'; 
+import AddPayment from '../components/AddPayment';
 
 const Dashboard = () => {
 
@@ -42,6 +43,7 @@ const Dashboard = () => {
                 </button> 
                 </Link>
             <CreditorList debts={state.debts}/>
+            <AddPayment/>
             <CreditorTotal totals={totals}/>
         </>
 
