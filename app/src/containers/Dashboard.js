@@ -8,7 +8,6 @@ import { userStore } from '../globalStore/UserContext';
 
 const Dashboard = () => {
 
-    const [data, setData] = useState([]); 
     const [totals, setTotals] = useState({})
     const { state, dispatch } = userStore();
     const request = client(); 
@@ -22,24 +21,18 @@ const Dashboard = () => {
               
                   console.log("response ", results.data );
                   setDebts(results.data.debts); 
-                //   setData(res.data.debts)
                   setTotals(
                       {
                       "totalBalance": results.data.totalBalance, 
                       "totalMinPayment": results.data.totalMinPayment, 
                       "totalCreditLimit": results.data.totalCreditLimit
                   }) 
-                  
-                 
           }; 
 
     useEffect(() => {    
         console.log("inside useEffect");
         fetchData()            
-        }, []);  
-        
-        console.log("dashboard", state.debts);
-        
+        }, []);          
 
     return (
         <>

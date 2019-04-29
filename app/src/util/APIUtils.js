@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ACCESS_TOKEN } from '../App';
 import { userStore } from '../globalStore/UserContext';
 
 const client = () => {
@@ -12,7 +11,6 @@ const client = () => {
             'Content-Type': 'application/json', 
         },
     };
-    console.log(defaultOptions.headers)
 
     return {
         get: (url, options = {}) => axios.get(url, { ...defaultOptions, ...options }),

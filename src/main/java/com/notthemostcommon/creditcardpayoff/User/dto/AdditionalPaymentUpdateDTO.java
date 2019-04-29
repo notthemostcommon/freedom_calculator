@@ -1,5 +1,6 @@
 package com.notthemostcommon.creditcardpayoff.User.dto;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,17 +9,15 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class UserUpdateDTO {
+public class AdditionalPaymentUpdateDTO {
 
     @Id
     @NotNull
     private Long id;
 
-    private String firstName;
+    private float additionalPayment;
 
-    private String lastName;
-
-    private String password;
-
-    private String username;
+    public float getAdditionalPayment() {
+        return additionalPayment;
+    }
 }

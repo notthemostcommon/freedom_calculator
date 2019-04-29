@@ -8,21 +8,6 @@ const CreditorList = (props) => {
 
   const { state } = userStore(); 
 
-
-    
-console.log("props", state.debts);
-
-    // const displayData = props.debts.map( (data, index) =>
-    //     <tr key={index}>
-    //         <th scope="row">{index + 1}</th>
-    //         <td>{data.debtName}</td>
-    //         <td>{data.balance}</td>
-    //         <td>{data.apr}%</td>
-    //         <td>{data.creditLimit}</td>
-    //         <td>{data.minPayment}</td>
-    //       </tr>
-    // )
-
     const displayData = state.debts.map( (data, index) =>
         <tr key={index}>
             <th scope="row">{index + 1}</th>
