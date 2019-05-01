@@ -4,7 +4,7 @@ import { Table } from 'reactstrap';
 import {userStore} from '../../globalStore/UserContext'; 
 
 
-const CreditorList = (props) => {
+const CreditorList = () => {
 
   const { state } = userStore(); 
 

@@ -6,6 +6,7 @@ import { DEBT_LIST_URL } from '../constants/index';
 import { Link } from 'react-router-dom'; 
 import { userStore } from '../globalStore/UserContext'; 
 import AddPayment from '../components/AddPayment';
+import CalculateInterest from '../components/strategies/CalculateInterest';
 
 const Dashboard = () => {
 
@@ -32,7 +33,7 @@ const Dashboard = () => {
 
     useEffect(() => {    
         console.log("inside useEffect");
-        fetchData()            
+        fetchData();             
         }, []);          
 
     return (
@@ -42,9 +43,11 @@ const Dashboard = () => {
                 Add Creditor
                 </button> 
                 </Link>
-            <CreditorList debts={state.debts}/>
+            <CreditorList/>
             <AddPayment/>
             <CreditorTotal totals={totals}/>
+            <CalculateInterest />
+
         </>
 
     )

@@ -79,7 +79,7 @@ public class UserController {
     public ResponseEntity<UserQueryDTO> updatePayment(@RequestBody AdditionalPaymentUpdateDTO paymentUpdateDTO,
                                                       Principal principal){
         String username = principal.getName();
-        Long userId = repository.findByUsername(username).getId(); 
+        Long userId = repository.findByUsername(username).getId();
         System.out.println("user id " + userId);
         return new ResponseEntity<>(paymentService.updatePayment(userId, paymentUpdateDTO), HttpStatus.OK);
     }
