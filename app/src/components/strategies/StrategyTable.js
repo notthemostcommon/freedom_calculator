@@ -43,6 +43,12 @@ const StrategyTable = (props) =>{
                 <TableCell align="right">{data.get("finalPaymentMonth")}</TableCell> 
             </TableRow>))
         }
+        <TableRow>
+            <TableCell rowSpan={1} />
+            <TableCell colSpan={1}>Total Interest Paid</TableCell>
+            <TableCell align="right">{props.interest}</TableCell>
+            <TableCell colSpan={2} />
+          </TableRow>
         </TableBody>
     </Table>
   </Paper>
